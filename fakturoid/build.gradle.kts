@@ -15,14 +15,17 @@ repositories {
 }
 
 dependencies {
-	implementation("com.konghq:unirest-java:3.11.09")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+	implementation("com.konghq:unirest-java:3.13.6")
+	implementation("com.konghq:unirest-objectmapper-jackson:3.13.6")
 
 	implementation(
-		kotlin("stdlib")
+		"org.jetbrains.kotlin:kotlin-stdlib:1.6.10"
 	)
 
-	testImplementation("junit:junit:4.12")
-	testImplementation("org.junit.vintage:junit-vintage-engine:5.3.1")
+	testImplementation("junit:junit:4.13.2")
+	testImplementation("org.junit.vintage:junit-vintage-engine:5.8.2")
 }
 
 tasks.withType<Test> {

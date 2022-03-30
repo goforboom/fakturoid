@@ -3,5 +3,6 @@ data class Client(
     val email: String,
 
     val apiKey: String,
-    val apiUserAgent: String
+    val apiUserAgent: String,
+    val apiVersion: ClientVersion
 )
