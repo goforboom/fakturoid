@@ -1,6 +1,6 @@
-package model.http
+package com.goforboom.fakturoid.model.http
 
-import Client
+import com.goforboom.fakturoid.Client
 import kong.unirest.HttpRequest
 import kong.unirest.HttpResponse
 import kong.unirest.JsonNode
@@ -32,8 +32,7 @@ object Requester {
     fun requestJson(client: Client, method: RequestMethod, path: String, query: Map<String, String> = emptyMap()): HttpResponse<JsonNode> {
         Unirest.config().objectMapper = JacksonObjectMapper()
 
-        val request = this
-            .builder(client, method, path)
+        val request = builder(client, method, path)
             .header("Content-Type", "application/json")
             .queryString(query)
 

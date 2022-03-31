@@ -1,7 +1,9 @@
-package domain.subject
+package com.goforboom.fakturoid.domain.subject
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
+import java.net.URL
+import java.time.ZonedDateTime
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 class Subject(
@@ -9,21 +11,24 @@ class Subject(
     val id: String,
 
     @field:JsonProperty("custom_id")
-    val customId: String?,
+    val customId: URL?,
+
+    @field:JsonProperty("enabled_reminders")
+    val reminders: Boolean,
 
     val type: SubjectType,
 
     @field:JsonProperty("html_url")
-    val urlHtml: String,
+    val urlHtml: URL,
 
     @field:JsonProperty("url")
-    val url: String,
+    val url: URL,
 
     @field:JsonProperty("updated_at")
-    val updatedAt: String,
+    val updatedAt: ZonedDateTime,
 
     @field:JsonProperty("created_at")
-    val createdAt: String,
+    val createdAt: ZonedDateTime,
 
     // ---
     // Business info
@@ -37,6 +42,9 @@ class Subject(
     val web: String?,
     val email: String,
 
+    @field:JsonProperty("avatar_url")
+    val avatar: URL?,
+
     @field:JsonProperty("email_copy")
     val emailCopy: String?,
 
@@ -49,13 +57,18 @@ class Subject(
     @field:JsonProperty("vat_no")
     val vatNumber: String?,
 
+    @field:JsonProperty("local_vat_no")
+    val localVatNo: String,
+
     // ---
     // Address
     // ---
 
+    val country: String?,
     val city: String?,
     val zip: String?,
-    val country: String?,
+    val street: String?,
+    val street2: String?,
 
     // ---
     // Bank
@@ -67,16 +80,5 @@ class Subject(
     @field:JsonProperty("variable_symbol")
     val variableSymbol: String?,
 
-    val iban: String?,
-
-
-    val enabled_reminders: Boolean,
-    val local_vat_no: String,
-
-    val street2: String?,
-    val street: String?,
-
-    val avatar_url: String?
-
-
+    val iban: String?
 )

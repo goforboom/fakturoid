@@ -1,6 +1,6 @@
-package domain.subject.exceptions
+package com.goforboom.fakturoid.domain.subject.exceptions
 
-import model.http.RequestException
+import com.goforboom.fakturoid.model.http.RequestException
 
 class SubjectNotFoundException(
     val subjectId: Int

@@ -16,6 +16,7 @@ repositories {
 
 dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
 
 	implementation("com.konghq:unirest-java:3.13.6")
 	implementation("com.konghq:unirest-objectmapper-jackson:3.13.6")
@@ -26,6 +27,7 @@ dependencies {
 
 	testImplementation("junit:junit:4.13.2")
 	testImplementation("org.junit.vintage:junit-vintage-engine:5.8.2")
+	testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
 }
 
 tasks.withType<Test> {

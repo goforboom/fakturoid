@@ -1,3 +1,5 @@
+package com.goforboom.fakturoid
+
 data class Client(
     val slug: String,
     val email: String,

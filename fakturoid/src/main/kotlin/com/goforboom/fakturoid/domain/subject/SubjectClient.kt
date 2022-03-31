@@ -1,10 +1,10 @@
-package domain.subject
+package com.goforboom.fakturoid.domain.subject
 
-import Client
-import domain.subject.exceptions.SubjectNotFoundException
-import model.http.RequestMethod
-import model.http.Requester
-import model.mapper.Mapper
+import com.goforboom.fakturoid.Client
+import com.goforboom.fakturoid.domain.subject.exceptions.SubjectNotFoundException
+import com.goforboom.fakturoid.model.http.RequestMethod
+import com.goforboom.fakturoid.model.http.Requester
+import com.goforboom.fakturoid.model.mapper.Mapper
 
 class SubjectClient(private val client: Client) {
 
@@ -17,6 +17,9 @@ class SubjectClient(private val client: Client) {
                 "page" to page.toString()
             )
         )
+
+
+        throw RuntimeException(response.body.toPrettyString())
 
         return if (response.isSuccess) Mapper.mapToObject<List<Subject>>(response.body) else emptyList()
     }
