@@ -2,6 +2,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
 	kotlin("jvm") version "1.6.10"
+
+	id("maven-publish")
 }
 
 group = "com.goforboom"
@@ -15,14 +17,44 @@ repositories {
 }
 
 dependencies {
-	implementation("com.konghq:unirest-java:3.11.09")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+
+	implementation("com.konghq:unirest-java:3.13.6")
+	implementation("com.konghq:unirest-objectmapper-jackson:3.13.6")
 
 	implementation(
-		kotlin("stdlib")
+		"org.jetbrains.kotlin:kotlin-stdlib:1.6.10"
 	)
 
-	testImplementation("junit:junit:4.12")
-	testImplementation("org.junit.vintage:junit-vintage-engine:5.3.1")
+	testImplementation("junit:junit:4.13.2")
+	testImplementation("org.junit.vintage:junit-vintage-engine:5.8.2")
+	testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
+}
+
+publishing {
+	publications {
+		create<MavenPublication>("kotlin") {
+			groupId = "com.goforboom"
+			artifactId = "fakturoid"
+			version = version
+
+			from(components["java"])
+		}
+	}
+
+	repositories {
+		maven {
+			name = "goforboom"
+			url = uri("https://maven.pkg.github.com/goforboom/fakturoid")
+			credentials {
+
+				// Credentials for GitHub package publish
+				username = System.getenv("GITHUB_USERNAME")
+				password = System.getenv("GITHUB_TOKEN")
+			}
+		}
+	}
 }
 
 tasks.withType<Test> {
