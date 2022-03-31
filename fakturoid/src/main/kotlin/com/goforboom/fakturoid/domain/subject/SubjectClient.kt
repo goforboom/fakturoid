@@ -19,7 +19,7 @@ class SubjectClient(private val client: Client) {
         )
 
 
-        throw RuntimeException(response.body.toPrettyString())
+        //  throw RuntimeException(response.body.toPrettyString())
 
         return if (response.isSuccess) Mapper.mapToObject<List<Subject>>(response.body) else emptyList()
     }
