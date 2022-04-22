@@ -39,8 +39,6 @@ object Requester {
         query: Map<String, String> = emptyMap(),
         body: Any? = null
     ): HttpResponse<JsonNode> {
-        Unirest.config().objectMapper = JacksonObjectMapper()
-
         val request = builder(client, method, path)
             .header("Content-Type", "application/json")
             .queryString(query)
